@@ -1,0 +1,33 @@
+.btn {
+  background-color: rgb(18, 18, 18);
+  border: 0.1rem solid rgb(18, 18, 18);
+  border-radius: 0.2rem;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.4rem;
+  line-height: 4rem;
+  max-height: 4rem;
+  padding: 0 1.6rem;
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  background-color: rgb(245, 245, 245);
+  transition: all 0.3s;
+}
+
+.btn:active {
+  background-color: red;
+}
+
+.btn .btn__text {
+  color: rgb(245, 245, 245);
+  letter-spacing: 0.05rem;
+  transition: all 0.3s;
+}
+
+.btn:hover .btn__text {
+  color: rgb(18, 18, 18);
+  transition: all 0.3s;
+}

@@ -1,0 +1,10 @@
+.tile {
+  background-color: rgb(209, 209, 209);
+  border-radius: 0.4rem;
+  height: 2.4rem;
+  width: 2.4rem;
+}
+
+.tile:hover {
+  cursor: pointer;
+}

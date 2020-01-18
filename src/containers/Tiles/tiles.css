@@ -1,0 +1,5 @@
+#tiles__container {
+  grid-gap: 0.8rem;
+  grid-template-columns: repeat(5, 2.4rem);
+  grid-template-rows: repeat(5, 2.4rem);
+}
