@@ -1,15 +1,18 @@
 .tile {
-  background-color: rgb(209, 209, 209);
+  background-color: rgba(245, 245, 245, 0.4);
   border-radius: 0.4rem;
   height: 3.6rem;
+  transition: all 0.3s;
   width: 3.6rem;
 }
 
 .tile:hover {
+  background-color: rgba(245, 245, 245, 0.5);
   cursor: pointer;
-  opacity: 0.8;
+  transition: all 0.3s;
 }
 
 .tile.lit {
-  background-color: rgb(43, 106, 243);
+  background-color: rgb(245, 245, 245);
+  transition: all 0.3s;
 }
