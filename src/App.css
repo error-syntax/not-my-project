@@ -5,3 +5,12 @@
   justify-content: center;
   width: 100vw;
 }
+
+#game-modal__container {
+  display: flex;
+  flex-direction: column;
+}
+
+#game-modal__container h2 {
+  color: rgb(245, 245, 245);
+}

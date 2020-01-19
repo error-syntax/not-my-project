@@ -31,3 +31,10 @@
   color: rgb(18, 18, 18);
   transition: all 0.3s;
 }
+
+.btn.btn--light {
+  background-color: rgb(245, 245, 245);
+}
+.btn.btn--light .btn__text {
+  color: rgb(18, 18, 18);
+}

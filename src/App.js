@@ -1,17 +1,32 @@
 import React, { useState } from 'react';
 import './App.css';
+import Button from './components/Button';
+import Modal from './containers/Modal';
 import Tile from './components/Tile';
 import TilesContainer from './containers/Tiles';
 
 function App() {
-  const [rows, setRows] = useState(0);
-  const [cols, setCols] = useState(0);
+  const [rows, setRows] = useState(5);
+  const [cols, setCols] = useState(5);
 
   return (
     <div className="App">
+      {/* <Modal id={'game-modal__container'}>
+        <h2>Enter the number of ROWSxCOLS you'd like your puzzle.</h2>
+        <span>
+          <input type={'text'} placeholder={'Grid Size?'} />
+          <Button className='btn--light'>
+            Submit
+          </Button>
+        </span>
+      </Modal> */}
       <TilesContainer>
         {
-          Array.from(Array(25)).map((tile, idx) => <Tile key={idx} id={`tile-${idx}`} />)
+          Array.from(Array(rows)).map((tile, rowNum) => {
+            return Array.from(Array(cols)).map((tile, colNum) => {
+              return <Tile key={`${rowNum}${colNum}`} id={`${rowNum+1}${colNum+1}`} />
+            })
+          })
         }
       </TilesContainer>
     </div>
