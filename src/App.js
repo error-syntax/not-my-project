@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div className="App">
-      <Modal id={'game-modal__container'}>
+      <Modal id={'game-modal__container'} className='modal__container'>
         <h2>Enter the number of ROWSxCOLS you'd like your puzzle.</h2>
         <span>
           <input id={'gridSize__input'} type={'text'} placeholder={'Grid Size?'} />
