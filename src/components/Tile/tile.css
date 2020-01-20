@@ -14,5 +14,6 @@
 
 .tile.lit {
   background-color: rgb(245, 245, 245);
+  box-shadow: 0 0 4rem rgba(245, 245, 245, 0.85);
   transition: all 0.3s;
 }

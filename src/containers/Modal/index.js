@@ -1,8 +1,8 @@
 import React from 'react';
 import './modal.css';
 
-const Modal = ({ children, id }) => (
-  <div id={id} className='modal__container show'>
+const Modal = ({ children, className, id }) => (
+  <div id={id} className={className}>
     {children}
   </div>
 );
