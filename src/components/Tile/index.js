@@ -5,7 +5,7 @@ const Tile = ({id, litEh, toggleLit}) => {
     return (
       <div
         id={id}
-        className={litEh === 1 ? 'tile lit' : 'tile'}
+        className={litEh ? 'tile lit' : 'tile'}
         onClick={() => {
           toggleLit(id)
         }}

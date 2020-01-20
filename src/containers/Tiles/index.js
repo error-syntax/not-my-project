@@ -34,7 +34,7 @@ class TilesContainer extends React.Component {
     const colNum = tileId.split("")[1]
 
     const newStateOfTile = this.state.litEhStateArr
-    newStateOfTile[rowNum][colNum] = 1
+    newStateOfTile[rowNum][colNum] = !newStateOfTile[rowNum][colNum]
 
     this.setState({
       ...this.state,
