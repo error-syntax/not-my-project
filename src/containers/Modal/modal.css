@@ -2,10 +2,14 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.45);
   bottom: 0;
-  display: flex;
+  display: none;
   justify-content: center;
   left: 0;
   position: fixed;
   right: 0;
   top: 0;
+}
+
+.modal__container.show {
+  display: flex;
 }

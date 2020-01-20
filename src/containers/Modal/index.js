@@ -2,7 +2,7 @@ import React from 'react';
 import './modal.css';
 
 const Modal = ({ children, id }) => (
-  <div id={id} className='modal__container'>
+  <div id={id} className='modal__container show'>
     {children}
   </div>
 );

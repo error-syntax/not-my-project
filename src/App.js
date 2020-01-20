@@ -9,21 +9,32 @@ function App() {
   const [rows, setRows] = useState(5);
   const [cols, setCols] = useState(5);
 
+  const changeGrid = () => {
+    const newGridSize = +document.querySelector('#gridSize__input').value;
+    
+    setRows(newGridSize);
+    setCols(newGridSize);
+    document.querySelector('#game-modal__container').classList.remove('show');
+  };
+
   return (
     <div className="App">
-      {/* <Modal id={'game-modal__container'}>
+      <Modal id={'game-modal__container'}>
         <h2>Enter the number of ROWSxCOLS you'd like your puzzle.</h2>
         <span>
-          <input type={'text'} placeholder={'Grid Size?'} />
-          <Button className='btn--light'>
+          <input id={'gridSize__input'} type={'text'} placeholder={'Grid Size?'} />
+          <Button className='btn--light' handleClick={changeGrid}>
             Submit
           </Button>
         </span>
-      </Modal> */}
-      <TilesContainer>
+      </Modal>
+      <TilesContainer
+        cols={cols}
+        rows={rows}
+      >
         {
-          Array.from(Array(rows)).map((tile, rowNum) => {
-            return Array.from(Array(cols)).map((tile, colNum) => {
+          Array.from(Array(rows)).map((_tile, rowNum) => {
+            return Array.from(Array(cols)).map((_tile, colNum) => {
               return <Tile key={`${rowNum}${colNum}`} id={`${rowNum+1}${colNum+1}`} />
             })
           })
