@@ -26,14 +26,16 @@ class SignIn extends Component {
     });
   };
 
-  handleSubmit = formId => {
+  handleSubmit = async formId => {
     const { setUser } = this.props;
+    const apiURL = `http://localhost:3000/api/v1/users`;
 
     if (formId === "sign-up__form") {
-      handleUserFormSubmit(formId, setUser, 'POST');
+      console.log('Creating User...')
+      await handleUserFormSubmit(formId, setUser, apiURL);
     } else {
-      console.log("sign-in__form");
-      // GET REQUEST
+      console.log("Authenticating User...");
+      await handleUserFormSubmit(formId, setUser, `${apiURL}/login`);
     }
   };
 
@@ -43,8 +45,16 @@ class SignIn extends Component {
     return (
       <div>
         <div className="container" id="container">
-          <SignUpForm errors={errors} />
-          <SignInForm errors={errors} />
+          <SignUpForm
+            errors={errors}
+            handleErrors={this.handleErrors}
+            handleSubmit={this.handleSubmit}
+          />
+          <SignInForm
+            errors={errors}
+            handleErrors={this.handleErrors}
+            handleSubmit={this.handleSubmit}
+          />
           <SignInOverlay />
         </div>
       </div>
