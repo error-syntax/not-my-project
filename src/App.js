@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import "./App.css";
-import Button from "./components/Button";
-import Modal from "./containers/Modal";
-import TilesContainer from "./containers/Tiles/TileContainer";
+
+// Views
+import { default as Home } from './views/Homepage';
+import SignIn from './views/SignIn';
+import Game from './views/Game';
+
 
 function App() {
   const [rows, setRows] = useState(5);
+  const [user, setUser] = useState({});
   const [cols, setCols] = useState(5);
 
   const changeGrid = () => {
@@ -17,21 +22,21 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Modal id={"game-modal__container"} className="modal__container ">
-        <h2>Enter the number of ROWSxCOLS you'd like your puzzle.</h2>
-        <span>
-          <input
-            id={"gridSize__input"}
-            type={"text"}
-            placeholder={"Grid Size?"}
-          />
-          <Button className="btn--light" handleClick={changeGrid}>
-            Submit
-          </Button>
-        </span>
-      </Modal>
-      <TilesContainer cols={cols} rows={rows} />
+    <div className={"App"}>
+      <Router>
+        {/* Nav Component Lives Here */}
+        <Switch>
+          <Route exact path="/">
+            <Home user={user} changeGrid={changeGrid} />
+          </Route>
+          <Route path="/signup">
+            <SignIn setUser={setUser} />
+          </Route>
+          <Route path="/game">
+            <Game rows={rows} cols={cols}/>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
