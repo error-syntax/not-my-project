@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import "./App.css";
 
 // Views
-import { default as Home } from './views/Homepage';
-import SignIn from './views/SignIn';
-import Game from './views/Game';
+import { Home } from './views/Homepage';
+import { SignIn } from './views/SignIn';
+import { Game } from './views/Game';
+import { Nav } from "./components/Nav";
 
 
 function App() {
@@ -24,13 +25,13 @@ function App() {
   return (
     <div className={"App"}>
       <Router>
-        {/* Nav Component Lives Here */}
+        <Nav user={user}/>
         <Switch>
           <Route exact path="/">
             <Home user={user} changeGrid={changeGrid} />
           </Route>
           <Route path="/signup">
-            <SignIn setUser={setUser} />
+            { user.id ? <Redirect to="/" /> : <SignIn setUser={setUser} /> }
           </Route>
           <Route path="/game">
             <Game rows={rows} cols={cols}/>
