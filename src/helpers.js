@@ -1,10 +1,11 @@
-export const handleUserFormSubmit = async (form, appUpdater, url) => {
-  const formEl = document.querySelector(`#${form}`);
-  const inputsArr = formEl.querySelectorAll("input");
-  let userObject = {};
+export const handleUserFormSubmit = async (form, setUserState, APIUrl) => {
+  const formEl = document.querySelector(`#${form}`); //find form that user filled out
+  const inputsArr = formEl.querySelectorAll("input"); // gets a list of all inputs on above form
+  let userObject = {}; // initializing user obj
 
   inputsArr.forEach(input => {
-    userObject[input.dataset.colname] = input.value;
+    //loop through inputs
+    userObject[input.dataset.colname] = input.value; // build user obj with input values
   });
 
   const fetchOptions = {
@@ -16,36 +17,41 @@ export const handleUserFormSubmit = async (form, appUpdater, url) => {
     body: JSON.stringify({ user: userObject })
   };
 
-  await fetch(url, fetchOptions)
+  await fetch(APIUrl, fetchOptions) // make fetch post request that waits for api res
     .then(res => {
-      console.log(typeof res.status, res.status);
+      //then when res comes back check res status for code
       if (res.status === 409) {
+        // conflict res'
+        console.log("conflict");
         res
           .text()
           .then(errs => {
             throw new Error(errs);
           })
           .catch(err => {
-            console.log('User already exists...')
+            console.log(err, "User already exists...");
             const errJSON = JSON.parse(err.message);
             return errJSON;
           });
       } else if (res.status === 403) {
+        // unauthorized res
+        console.log("unauthorized");
         res
           .text()
           .then(errs => {
             throw new Error(errs);
           })
           .catch(err => {
-            console.log("Invalid UN/PW combo...");
+            console.log(err, "Invalid UN/PW combo...");
             const errJSON = JSON.parse(err.message);
             return errJSON;
           });
       } else {
-        return res.json();
+        console.log("success!");
+        res.json()
+          .then(user => {
+            setUserState(user); // references the setUser hook in signIn.js
+          })
       }
     })
-    .then(user => {
-      appUpdater(user);
-    });
 };
