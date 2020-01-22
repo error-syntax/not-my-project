@@ -1,0 +1,17 @@
+.MuiAppBar-colorPrimary {
+  background-color: rgb(17, 17, 17) !important;
+  color: #fff;
+}
+
+.MuiToolbar-root.MuiToolbar-regular.MuiToolbar-gutters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nav__links {
+  justify-content: flex-end;
+}
+.nav__link {
+  color: whitesmoke;
+}

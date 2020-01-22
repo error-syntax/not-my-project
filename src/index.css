@@ -7,13 +7,30 @@ html {
 }
 
 body {
-  background-color: rgb(17, 17, 17);
   font-family: Arial, Helvetica, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   margin: 0;
 }
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: rgb(21, 21, 21);
+    color: rgb(245, 245, 245);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: rgb(245, 245, 245);
+    color: rgb(21, 21, 21);
+  }
+}
+
 .grid {
   display: grid;
+}
+
+.text-center {
+  text-align: center;
 }
