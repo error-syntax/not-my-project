@@ -38,7 +38,7 @@ function App() {
 						{user.id ? <Redirect to="/" /> : <SignIn setUser={setUser} />}
 					</Route>
 					<Route path="/game">
-						<GameTimerWrap rows={rows} cols={cols}></GameTimerWrap>
+						<GameTimerWrap rows={rows} cols={cols} user={user}></GameTimerWrap>
 					</Route>
 				</Switch>
 			</Router>
