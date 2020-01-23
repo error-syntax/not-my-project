@@ -1,29 +1,61 @@
-import React, { useState } from "react";
-import Timer from "react-compound-timer";
-import { TilesContainer } from "../../containers/Tiles";
-import "./game.css";
+import React, { Component, useState } from 'react';
+import { TilesContainer } from '../../containers/Tiles';
+import './game.css';
 
-export const Game = ({ rows, cols }) => {
-  const [clicks, setClicks] = useState(0);
-  return (
-    <div className={"game-container"}>
-      <TilesContainer
-        cols={cols}
-        rows={rows}
-        clicks={clicks}
-        setClicks={setClicks}
-      />
-      <span className={"clicks"}>Clicks: {clicks} </span>
-      <span className={"timer"}> 
-        Time: 
-        <Timer initialTime={0} direction="forward">
-          {() => (
-            <React.Fragment>
-              <Timer.Seconds /> seconds
-            </React.Fragment>
-          )}
-        </Timer>
-      </span>
-    </div>
-  );
-};
+export class Game extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			clicks: 0
+		};
+	}
+
+	incrementClicks = () => {
+		this.setState((previousState) => {
+			return {
+				clicks: previousState.clicks + 1
+			};
+		});
+	};
+
+	render() {
+		return (
+			<div className={'game-container'}>
+				<TilesContainer
+					cols={this.props.cols}
+					rows={this.props.rows}
+					clicks={this.state.clicks}
+					stopTimer={this.props.stopTimer}
+					incrementClicks={this.incrementClicks}
+				/>
+				<span className={'clicks'}>Clicks: {this.state.clicks} </span>
+				<span className={'timer'}>
+					Timer:
+					{` ${this.props.time} s`}
+				</span>
+			</div>
+		);
+	}
+}
+
+export default Game;
+
+// export const Game = ({ rows, cols, time, stopTimer }) => {
+// 	const [clicks, setClicks] = useState(0);
+// 	return (
+// 		<div className={'game-container'}>
+// 			<TilesContainer
+// 				cols={cols}
+// 				rows={rows}
+// 				clicks={clicks}
+// 				setClicks={setClicks}
+// 				stopTimer={stopTimer}
+// 			/>
+// 			<span className={'clicks'}>Clicks: {clicks} </span>
+// 			<span className={'timer'}>
+// 				Timer:
+// 				{` ${time} s`}
+// 			</span>
+// 		</div>
+// 	);
+// };
