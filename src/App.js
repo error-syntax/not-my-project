@@ -12,6 +12,8 @@ import { Home } from './views/Homepage';
 import { SignIn } from './views/SignIn';
 import { GameTimerWrap } from './views/Game/GameTimerWrap';
 import { Nav } from './components/Nav';
+import Leaderboard  from './views/Leaderboard';
+import StickyHeadTable from './views/StickyHeadTable';
 
 function App() {
 	const [rows, setRows] = useState(5);
@@ -27,23 +29,29 @@ function App() {
 	};
 
 	return (
-		<div className={'App'}>
-			<Router>
-				<Nav user={user} />
-				<Switch>
-					<Route exact path="/">
-						<Home user={user} changeGrid={changeGrid} />
-					</Route>
-					<Route path="/signup">
-						{user.id ? <Redirect to="/" /> : <SignIn setUser={setUser} />}
-					</Route>
-					<Route path="/game">
-						<GameTimerWrap rows={rows} cols={cols} user={user}></GameTimerWrap>
-					</Route>
-				</Switch>
-			</Router>
-		</div>
-	);
+    <div className={"App"}>
+      <Router>
+        <Nav user={user} />
+        <Switch>
+          <Route exact path="/">
+            <Home user={user} changeGrid={changeGrid} />
+          </Route>
+          <Route path="/signup">
+            {user.id ? <Redirect to="/" /> : <SignIn setUser={setUser} />}
+          </Route>
+          <Route path="/game">
+            <GameTimerWrap rows={rows} cols={cols} user={user}></GameTimerWrap>
+          </Route>
+          <Route path="/leaderboard">
+            <Leaderboard />
+          </Route>
+          <Route path="/stickyheadtable">
+            <StickyHeadTable />
+          </Route>
+        </Switch>
+      </Router>
+    </div>
+  );
 }
 
 export default App;
