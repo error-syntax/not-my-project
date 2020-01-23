@@ -16,18 +16,24 @@ export class GameTimerWrap extends Component {
 				clearInterval(startTimer);
 			}
 			this.setState((previousState) => {
+
+        
 				return { time: previousState.time + 1 };
 			});
-			// console.log(this.state.time);
+
 		}, 1000);
-		// console.log(this.state.stopTimer);
+
 	};
 
 	stopTimer = () => {
+
+    
 		this.setState({ stopTimer: true });
 	};
 
 	componentDidMount() {
+
+    
 		this.setTimer();
 	}
 
@@ -37,7 +43,8 @@ export class GameTimerWrap extends Component {
 				rows={this.props.rows}
 				cols={this.props.cols}
 				time={this.state.time}
-				stopTimer={this.stopTimer}
+        stopTimer={this.stopTimer}
+        user={this.props.user}
 			></Game>
 		);
 	}

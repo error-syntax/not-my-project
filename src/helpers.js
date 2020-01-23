@@ -22,32 +22,32 @@ export const handleUserFormSubmit = async (form, setUserState, APIUrl) => {
       //then when res comes back check res status for code
       if (res.status === 409) {
         // conflict res'
-        console.log("conflict");
+
         res
           .text()
           .then(errs => {
             throw new Error(errs);
           })
           .catch(err => {
-            console.log(err, "User already exists...");
+
             const errJSON = JSON.parse(err.message);
             return errJSON;
           });
       } else if (res.status === 403) {
         // unauthorized res
-        console.log("unauthorized");
+
         res
           .text()
           .then(errs => {
             throw new Error(errs);
           })
           .catch(err => {
-            console.log(err, "Invalid UN/PW combo...");
+
             const errJSON = JSON.parse(err.message);
             return errJSON;
           });
       } else {
-        console.log("success!");
+
         res.json()
           .then(user => {
             setUserState(user); // references the setUser hook in signIn.js
