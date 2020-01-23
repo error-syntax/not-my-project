@@ -8,8 +8,9 @@
 
 #game-modal__container {
   flex-direction: column;
+  align-items: center
 }
 
 #game-modal__container h2 {
-  color: rgb(245, 245, 245);
+  color: rgb(17, 17, 17);
 }
