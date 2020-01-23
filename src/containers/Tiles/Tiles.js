@@ -3,6 +3,7 @@ import { Tile } from "../../components/Tile";
 import "./tiles.css";
 
 export class TilesContainer extends React.Component {
+  _isMounted = false;
   constructor(props) {
     super(props);
     this.state = {
@@ -97,12 +98,13 @@ export class TilesContainer extends React.Component {
     let countLit = this.state.litEhStateArr.flat().filter(x => x === true)
       .length;
 
-    if (countLit === 11) {
+    if (countLit === 25) {
       this.gameComplete();
     }
   };
 
   componentDidMount() {
+    this._isMounted = true;
     const { cols, rows } = this.props;
     this.buildStateArr(cols, rows);
   }
