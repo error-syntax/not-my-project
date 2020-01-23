@@ -2,6 +2,7 @@ import { Game } from './Game';
 import React, { Component } from 'react';
 
 export class GameTimerWrap extends Component {
+  _isMounted = false;
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -32,6 +33,7 @@ export class GameTimerWrap extends Component {
 	};
 
 	componentDidMount() {
+    this._isMounted = true;
 
     
 		this.setTimer();
