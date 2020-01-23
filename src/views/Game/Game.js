@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { TilesContainer } from '../../containers/Tiles';
 import './game.css';
 
@@ -12,9 +12,11 @@ export class Game extends Component {
 
 	incrementClicks = () => {
 		this.setState((previousState) => {
+
 			return {
 				clicks: previousState.clicks + 1
-			};
+      };
+      
 		});
 	};
 
@@ -26,7 +28,9 @@ export class Game extends Component {
 					rows={this.props.rows}
 					clicks={this.state.clicks}
 					stopTimer={this.props.stopTimer}
-					incrementClicks={this.incrementClicks}
+          incrementClicks={this.incrementClicks}
+          time={this.props.time}
+          user={this.props.user}
 				/>
 				<span className={'clicks'}>Clicks: {this.state.clicks} </span>
 				<span className={'timer'}>
