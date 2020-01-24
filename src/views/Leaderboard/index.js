@@ -40,7 +40,7 @@
 // export default Leaderboard;
 
 // ++++++++++++++++++++++++
-import React from 'react';
+import React, {useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -52,41 +52,42 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
 const columns = [
-  { id: 'rank', label: 'Rank', minWidth: 170 },
-  { id: 'user', label: 'Username', minWidth: 100 },
   {
-    id: 'clicks',
-    label: 'Clicks',
+    id: "",
+    label: "Rank",
     minWidth: 170,
-    align: 'right',
-    format: value => value.toLocaleString(),
+    align: "center",
+    format: value => value.toLocaleString()
   },
   {
-    id: 'time',
-    label: 'Time (seconds)',
-    minWidth: 170,
-    align: 'right',
-    format: value => value.toLocaleString(),
+    id: "username",
+    label: "Username",
+    minWidth: 100,
+    align: "center",
+    format: value => value.toLocaleString()
   },
   {
-    id: 'score',
-    label: 'Score',
+    id: "clicks",
+    label: "Clicks",
     minWidth: 170,
-    align: 'right',
-    format: value => value.toFixed(2),
+    align: "center",
+    format: value => value.toLocaleString()
   },
+  {
+    id: "time",
+    label: "Time (seconds)",
+    minWidth: 170,
+    align: "center",
+    format: value => value.toLocaleString()
+  },
+  {
+    id: "score",
+    label: "Score",
+    minWidth: 170,
+    align: "center",
+    format: value => value.toFixed(2)
+  }
 ];
-
-
-
-
-
-
-function createData(name, code, population, size) {
-  const density = population / size;
-  return { name, code, population, size, density };
-}
-
 
 const useStyles = makeStyles({
   root: {
@@ -102,23 +103,29 @@ export default function StickyHeadTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rows, setRows] = React.useState([])
-
+  
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
+  
   const handleChangeRowsPerPage = event => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
-  fetch("http://localhost:3000/api/v1/games")
+  
+  const sortGames = (games) => {
+    games.sort((a, b) => {
+      return a.score - b.score;
+    })
+    setRows(games);
+  }
+  
+  useEffect(() => {
+   fetch("http://localhost:3000/api/v1/games")
     .then(res => res.json())
-    .then(games => {setRows(games)});
-
-
-
-
+    .then(games => sortGames(games));
+}, [])
+    
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
@@ -137,21 +144,24 @@ export default function StickyHeadTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {
-              return (
+              {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map(row => {
+                  return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                   {columns.map(column => {
                     const value = row[column.id];
                     return (
                       <TableCell key={column.id} align={column.align}>
-                        {column.format && typeof value === 'number' ? column.format(value) : value}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              );
-            })}
-          </TableBody>
+                            {column.format && typeof value === "number"
+                              ? column.format(value)
+                              : value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })}
+            </TableBody>
         </Table>
       </TableContainer>
       <TablePagination
