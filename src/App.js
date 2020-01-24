@@ -13,7 +13,6 @@ import { SignIn } from './views/SignIn';
 import { GameTimerWrap } from './views/Game/GameTimerWrap';
 import { Nav } from './components/Nav';
 import Leaderboard  from './views/Leaderboard';
-import StickyHeadTable from './views/StickyHeadTable';
 
 function App() {
 	const [rows, setRows] = useState(5);
@@ -44,9 +43,6 @@ function App() {
           </Route>
           <Route path="/leaderboard">
             <Leaderboard />
-          </Route>
-          <Route path="/stickyheadtable">
-            <StickyHeadTable />
           </Route>
         </Switch>
       </Router>
