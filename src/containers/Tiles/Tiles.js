@@ -48,7 +48,8 @@ export class TilesContainer extends React.Component {
       time: this.props.time + 1,
       score: score,
       level: 1,
-      user_id: this.props.user.id
+      user_id: this.props.user.id,
+      username: this.props.user.username
     };
     const fetchOptions = {
       method: "POST",
@@ -98,7 +99,7 @@ export class TilesContainer extends React.Component {
     let countLit = this.state.litEhStateArr.flat().filter(x => x === true)
       .length;
 
-    if (countLit === 25) {
+    if (countLit === 11) {
       this.gameComplete();
     }
   };
