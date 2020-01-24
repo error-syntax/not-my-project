@@ -45,7 +45,7 @@ export const Nav = ({ user }) => {
               <span
                 id={"nav__signin-link"}
                 className={"nav__link"}
-                onClick={() => console.log('I will delete the session')}
+
               >
                 <Button color="inherit">Logout</Button>
               </span>

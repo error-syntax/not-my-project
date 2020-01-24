@@ -7,7 +7,7 @@ export const Tile = ({ id, litEh, toggleLit }) => {
 			id={id}
 			className={litEh ? 'tile lit' : 'tile'}
 			onClick={() => {
-				// console.log(id);
+
 				toggleLit(id);
 			}}
 		></div>

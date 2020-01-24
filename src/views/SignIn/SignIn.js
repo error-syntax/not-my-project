@@ -31,10 +31,10 @@ export class SignIn extends Component {
     const APIUrl = `http://localhost:3000/api/v1/users`;
 
     if (formId === "sign-up__form") {
-      console.log("Creating User...");
+
       await handleUserFormSubmit(formId, setUser, APIUrl);
     } else {
-      console.log("Authenticating User...");
+
       await handleUserFormSubmit(formId, setUser, `${APIUrl}/login`);
     }
   };
